@@ -12,7 +12,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <span><%= job.name %></span>
           <div class="d-flex align-items-center">
-            <input type="checkbox" <%= 'checked' if job.enabled %> />
+            <input class="job_toggle" jobid="<%= job.id %>" type="checkbox" <%= 'checked' if job.enabled %> />
             <a class="ml-3 btn btn-sm btn-primary" href="<%= edit_admin_job_path(:company_id => @company.id, :id => job.id) %>">Edit</a>
             <a class="ml-3 btn btn-sm btn-danger" href="<%= admin_job_path(:format => "DELETE", :id => job.id) %>">Delete</a>
           </div>
@@ -21,3 +21,30 @@
     </ul>
   </div>
 </div>
+
+<script>
+window.onload = function() {
+  var toggle_switch = false
+  $(".job_toggle").on("click", function(e) {
+    if (toggle_switch) {
+      e.preventDefault()
+    }
+
+    toggle_switch = true
+
+    $.ajax({
+      url: "/toggle_job_enabled",
+      type: "patch",
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        id: e.target.getAttribute("jobid")
+      }
+    }).done(function(res) {
+      console.log(res)
+      toggle_switch = false
+    })
+  })
+}
+</script>
