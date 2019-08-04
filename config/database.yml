@@ -10,12 +10,11 @@ default: &default
   timeout: 5000
   username: Mickey
   password: 
-  host: localhost
-
 
 development:
   <<: *default
   database: yourator
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,3 +26,4 @@ test:
 production:
   <<: *default
   database: yourator
+  username: 
