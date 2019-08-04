@@ -1,4 +1,3 @@
-<h1><%= @admin_company.name %></h1>
 <%= form_with(model: admin_company, local: true) do |form| %>
   <% if admin_company.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +10,20 @@
       </ul>
     </div>
   <% end %>
+  
+  <% if @admin_company.new_record? %>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+  <% else %>
+    <h1><%= @admin_company.name %></h1>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :enabled %>
+    <%= form.check_box :enabled %>
+  </div>
 
   <div class="field">
     <%= form.label :intro %>

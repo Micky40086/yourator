@@ -1,0 +1,35 @@
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <span>精選公司</span>
+    <a href="<%= companies_path %>">更多公司</a>
+  </div>
+  <div>
+    <ul class="list-group">
+      <% @companies.each do |company| %>
+        <a href="<%= company_path(:id => company.id) %>">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><%= company.name %></span>
+          </li>
+        </a>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <span>精選職缺</span>
+    <a href="<%= jobs_path %>">更多職缺</a>
+  </div>
+  <div>
+    <ul class="list-group">
+      <% @jobs.each do |job| %> 
+        <a href="<%= job_path(:id => job.id) %>">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><%= job.name %></span>
+          </li>
+        </a>
+      <% end %>
+    </ul>
+  </div>
+</div>
